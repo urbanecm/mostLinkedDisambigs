@@ -7,6 +7,8 @@ import pywikibot
 import urllib2
 import json
 import operator
+from wmflabs import db
+conn = db.connect('cswiki')
 
 #Init lib
 site = pywikibot.Site("cs", "wikipedia")
@@ -14,17 +16,17 @@ site = pywikibot.Site("cs", "wikipedia")
 
 ################### PROGRAM #################
 
-#Get and parse JSON data from Quarry
-response = urllib2.urlopen("https://quarry.wmflabs.org/run/46181/output/0/json?download=true")
-json_data = response.read()
-parsed_json = json.loads(json_data)
+res = urllib2.urlopen('https://quarry.wmflabs.org/run/65832/output/0/json?download=true')
+from_quarry = res.read()
+from__quarry = json.loads(from_quarry)
+data = from__quarry['rows']
 
 #Init loop
 i = 0
 links_res = {} 
 print "START LOOP"
 #Run for every disambig
-for item in parsed_json['rows']:
+for item in data:
 	#Find page in Wikipedia
 	page = pywikibot.Page(site, item[0])
 	#Select links
@@ -53,8 +55,8 @@ text = ""
 for item in sorted_links:
 	text += "# [[" + item[0] + "]] ([[Special:Whatlinkshere/" + item[0] + "|" + str(item[1]) + " odkazu]])\n"
 
-print text
+#print text
 
-page = pywikibot.Page(site, u"Wikipedista:UrbanecmBot/Pískoviště")
+page = pywikibot.Page(site, u"Wikipedista:UrbanecmBot/Pracovní")
 page.text = text
-page.save(u"Robotická editace pískoviště")
+page.save(u"update")
