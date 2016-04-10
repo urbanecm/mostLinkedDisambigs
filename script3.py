@@ -17,10 +17,6 @@ text = ""
 for item in result:
 	text += item + "\n"
 
-text = text.replace("odkazu", "odkazů")
-
-#print unicode(text)
-
 page = pywikibot.Page(site, u"Wikipedista:UrbanecmBot/DisambigLinks")
 page.text = text
 page.save(u"update")
