@@ -5,7 +5,7 @@ import pywikibot
 
 site = pywikibot.Site("cs", "wikipedia")
 
-page = pywikibot.Page(site, u'Wikipedista:UrbanecmBot/Pískoviště')
+page = pywikibot.Page(site, u'Wikipedista:UrbanecmBot/Pracovní')
 
 text = page.text
 
@@ -17,8 +17,10 @@ text = ""
 for item in result:
 	text += item + "\n"
 
-print text
+text = text.replace("odkazu", "odkazů")
 
-page = pywikibot.Page(site, u"Wikipedista:UrbanecmBot/Pískoviště 2")
+#print unicode(text)
+
+page = pywikibot.Page(site, u"Wikipedista:UrbanecmBot/DisambigLinks")
 page.text = text
-page.save(u"robotí editace pískoviště")
+page.save(u"update")
