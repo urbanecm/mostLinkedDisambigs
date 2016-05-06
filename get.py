@@ -15,7 +15,7 @@ Example: python get.py Wikipedia | grep MediaWiki > results.txt
 
 __version__ = '$Id: 4b97cdfad242b344e512cd25639daf3ec9351412 $'
 
-import wikipedia as pywikibot
+import pywikibot
 
 
 def main():
