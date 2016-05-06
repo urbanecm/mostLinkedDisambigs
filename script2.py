@@ -16,7 +16,7 @@ site = pywikibot.Site("cs", "wikipedia")
 
 ################### PROGRAM #################
 
-res = urllib2.urlopen('http://quarry.wmflabs.org/run/79146/output/0/json?download=true')
+res = urllib2.urlopen('https://quarry.wmflabs.org/run/79146/output/0/json?download=true')
 from_quarry = res.read()
 from__quarry = json.loads(from_quarry)
 data = from__quarry['rows']
