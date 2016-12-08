@@ -14,8 +14,7 @@ conn = db.connect('cswiki')
 site = pywikibot.Site("cs", "wikipedia")
 
 
-################### PROGRAM #################
-
+################### PROGRAM ################
 res = urllib2.urlopen('https://quarry.wmflabs.org/run/87425/output/0/json?download=true')
 from_quarry = res.read()
 from__quarry = json.loads(from_quarry)
