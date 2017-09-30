@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from wmflabs import db
 import pywikibot
 site = pywikibot.Site()
@@ -14,8 +17,9 @@ with cur:
 
 res = u""
 for row in data:
-	rowres = u"# [[" + row[1] + u"]] ([[Speciální:Whatlinkshere/" + row[1] + u"|" + str(row[0]) + u"]])"
+	rowres = u"# [[" + row[1].encode('utf-8') + u"]] ([[Speciální:Whatlinkshere/" + row[1].encode('utf-8') + u"|" + unicode(row[0]) + u" odkazů]])"
 	res += rowres + '\n'
+
 
 page = pywikibot.Page(site, u"Wikipedie:Seznam nejvíce odkazovaných rozcestníků/Odkazy")
 page.text = res
